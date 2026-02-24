@@ -731,21 +731,10 @@
     const whatsBtn = document.getElementById("whatsBtn");
     const backBtn  = document.getElementById("backBtn");
 
-    // Troque para o seu número (DDD + número). Ex: 5511999999999
-    const WHATS_PHONE = buildUrlWithSameParams("https://virgemdeguadalupe.vercel.app/");
-
-    function buildWhatsLink() {
-      const numero = onlyDigits(WHATS_PHONE);
-      const nomeMsg = nome ? `Sou ${nome}. ` : "";
-      const pedidoMsg = orderId ? `Meu pedido é ${orderId}. ` : "";
-      const msg = encodeURIComponent(
-        `A paz! 🙏 ${nomeMsg}${pedidoMsg}Acabei de finalizar o Itinerário Quaresmal 2026 e gostaria de confirmar o envio, por favor.`
-      );
-      return `https://wa.me/${numero}?text=${msg}`;
-    }
-
+   // Voltar ao site (troque a URL abaixo para sua home real)
     whatsBtn.addEventListener("click", () => {
-      window.location.href = buildWhatsLink();
+      const home = buildUrlWithSameParams("https://virgemdeguadalupe.vercel.app/");
+      window.location.href = home;
     });
 
     // Voltar ao site (troque a URL abaixo para sua home real)
