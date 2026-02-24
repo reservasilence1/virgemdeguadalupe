@@ -71,50 +71,46 @@
 }
 
 .brand .logo{
-  /* tamanho fluido: cresce no desktop, reduz no mobile */
-  width: clamp(34px, 6.5vw, 44px);
-  height: clamp(34px, 6.5vw, 44px);
+  /* responsivo */
+  width: clamp(90px, 22vw, 150px);
+  height: auto;
 
-  border-radius: 999px;
-  overflow:hidden;            /* garante corte perfeito */
-  flex: 0 0 auto;             /* não deixa achatar */
-  display:grid;
-  place-items:center;
+  /* REMOVE o efeito redondo */
+  border-radius: 0;
+  overflow: visible;
 
-  background: rgba(255,255,255,.08);
-  border: 1px solid rgba(255,255,255,.12);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background: transparent;
+  border: 0;
 }
 
 .brand .logo img{
   width: 100%;
-  height: 100%;
-  object-fit: contain;        /* preserva a logo sem cortar */
+  height: auto;
+  max-height: 44px;      /* controla altura no header */
+  object-fit: contain;
   display:block;
 }
 
-/* (Opcional) melhora título no mobile */
-.brand .title strong{
-  font-size: clamp(13px, 3.6vw, 14px);
-}
-.brand .title span{
-  font-size: clamp(11px, 3.2vw, 12px);
-}
-
-/* === MOBILE: deixa tudo bem alinhado e sem quebrar === */
+/* mobile */
 @media (max-width: 520px){
-  .header-inner{
-    padding: 12px 10px;
-  }
-
-  .brand{
-    gap: 9px;
-  }
-
   .brand .logo{
-    width: 36px;
-    height: 36px;
+    width: clamp(110px, 46vw, 170px);
   }
+  .brand .logo img{
+    max-height: 40px;
+  }
+}
 
+/* telas bem pequenas */
+@media (max-width: 360px){
+  .brand .logo img{
+    max-height: 36px;
+  }
+}
   /* se o título quebrar em 2 linhas, mantém bonito */
   .brand .title{
     line-height: 1.1;
