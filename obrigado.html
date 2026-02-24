@@ -63,36 +63,71 @@
       gap:10px;
     }
     .brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      color:#fff;
-      text-align:center;
-    }
-    .brand .logo{
-      width:40px;height:40px;
-      display:grid;place-items:center;
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.12);
-  
-    }
-    .brand .logo img{
-      width:100%;height:100%;
-      display:block;
-    }
-    .brand .title{
-      display:flex;
-      flex-direction:column;
-      line-height:1.05;
-    }
-    .brand .title strong{
-      font-size:14px;
-      letter-spacing:.02em;
-    }
-    .brand .title span{
-      font-size:12px;
-      color: rgba(255,255,255,.78);
-    }
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:#fff;
+  text-align:left;            /* melhor leitura no mobile */
+}
+
+.brand .logo{
+  /* tamanho fluido: cresce no desktop, reduz no mobile */
+  width: clamp(34px, 6.5vw, 44px);
+  height: clamp(34px, 6.5vw, 44px);
+
+  border-radius: 999px;
+  overflow:hidden;            /* garante corte perfeito */
+  flex: 0 0 auto;             /* não deixa achatar */
+  display:grid;
+  place-items:center;
+
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+}
+
+.brand .logo img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;        /* preserva a logo sem cortar */
+  display:block;
+}
+
+/* (Opcional) melhora título no mobile */
+.brand .title strong{
+  font-size: clamp(13px, 3.6vw, 14px);
+}
+.brand .title span{
+  font-size: clamp(11px, 3.2vw, 12px);
+}
+
+/* === MOBILE: deixa tudo bem alinhado e sem quebrar === */
+@media (max-width: 520px){
+  .header-inner{
+    padding: 12px 10px;
+  }
+
+  .brand{
+    gap: 9px;
+  }
+
+  .brand .logo{
+    width: 36px;
+    height: 36px;
+  }
+
+  /* se o título quebrar em 2 linhas, mantém bonito */
+  .brand .title{
+    line-height: 1.1;
+  }
+}
+
+/* === TELAS MUITO PEQUENAS (ex: 320px) === */
+@media (max-width: 360px){
+  .brand .logo{
+    width: 34px;
+    height: 34px;
+  }
+}
 
     /* Main layout */
     main{padding:26px 0 50px}
