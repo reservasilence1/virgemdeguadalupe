@@ -550,19 +550,19 @@
               </div>
               <div class="row">
                 <small>Entrega</small>
-                <strong id="deliveryType">Digital + Envio</strong>
+                <strong id="deliveryType">Físico + Digital</strong>
               </div>
             </div>
 
             <div class="divider"></div>
 
             <div class="tiny" id="contactHint">
-              Se você não receber em até alguns minutos, verifique a caixa de spam ou clique em “Falar no WhatsApp” para suporte.
+              Se você não receber em até alguns minutos, verifique a caixa de spam do seu E-mail.
             </div>
 
             <div class="cta">
-              <button class="btn" id="whatsBtn">Falar no WhatsApp</button>
-              <button class="btn outline" id="backBtn">Voltar ao site</button>
+              <button class="btn" id="whatsBtn">Voltar para a Loja</button>
+              <button class="btn outline" id="backBtn">Sair</button>
               <div class="tiny">
                 Dica: salve este comprovante — ele pode ser solicitado no atendimento.
               </div>
@@ -732,7 +732,7 @@
     const backBtn  = document.getElementById("backBtn");
 
     // Troque para o seu número (DDD + número). Ex: 5511999999999
-    const WHATS_PHONE = (params.whats || params.wa || "").trim() || "55XXXXXXXXXXX";
+    const WHATS_PHONE = buildUrlWithSameParams("https://virgemdeguadalupe.vercel.app/");
 
     function buildWhatsLink() {
       const numero = onlyDigits(WHATS_PHONE);
@@ -750,7 +750,7 @@
 
     // Voltar ao site (troque a URL abaixo para sua home real)
     backBtn.addEventListener("click", () => {
-      const home = buildUrlWithSameParams("./index.html");
+      const home = buildUrlWithSameParams("https://virgemdeguadalupe.vercel.app/");
       window.location.href = home;
     });
 
