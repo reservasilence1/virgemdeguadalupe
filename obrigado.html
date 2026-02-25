@@ -36,17 +36,6 @@
       margin:0 auto;
     }
 
-    /* Top bar */
-    .topbar{
-      background: #0f2f22;
-      color: rgba(255,255,255,.92);
-      font-size:12px;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      text-align:center;
-      padding:10px 12px;
-    }
-
     /* Header */
     .header{
       background: var(--green-900);
@@ -62,68 +51,47 @@
       padding:14px 10px;
       gap:10px;
     }
+
+    /* Marca + logo (sem ficar redonda) */
     .brand{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  color:#fff;
-  text-align:left;            /* melhor leitura no mobile */
-}
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:#fff;
+      text-align:left;
+    }
 
-.brand .logo{
-  /* responsivo */
-  width: clamp(90px, 22vw, 150px);
-  height: auto;
+    .brand .logo{
+      width: clamp(90px, 22vw, 150px);
+      height: auto;
 
-  /* REMOVE o efeito redondo */
-  border-radius: 0;
-  overflow: visible;
+      border-radius: 0;
+      overflow: visible;
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
 
-  background: transparent;
-  border: 0;
-}
+      background: transparent;
+      border: 0;
+      flex: 0 0 auto;
+    }
 
-.brand .logo img{
-  width: 100%;
-  height: auto;
-  max-height: 44px;      /* controla altura no header */
-  object-fit: contain;
-  display:block;
-}
+    .brand .logo img{
+      width: 100%;
+      height: auto;
+      max-height: 44px;
+      object-fit: contain;
+      display:block;
+    }
 
-/* mobile */
-@media (max-width: 520px){
-  .brand .logo{
-    width: clamp(110px, 46vw, 170px);
-  }
-  .brand .logo img{
-    max-height: 40px;
-  }
-}
-
-/* telas bem pequenas */
-@media (max-width: 360px){
-  .brand .logo img{
-    max-height: 36px;
-  }
-}
-  /* se o título quebrar em 2 linhas, mantém bonito */
-  .brand .title{
-    line-height: 1.1;
-  }
-}
-
-/* === TELAS MUITO PEQUENAS (ex: 320px) === */
-@media (max-width: 360px){
-  .brand .logo{
-    width: 34px;
-    height: 34px;
-  }
-}
+    @media (max-width: 520px){
+      .brand .logo{ width: clamp(110px, 46vw, 170px); }
+      .brand .logo img{ max-height: 40px; }
+    }
+    @media (max-width: 360px){
+      .brand .logo img{ max-height: 36px; }
+    }
 
     /* Main layout */
     main{padding:26px 0 50px}
@@ -182,9 +150,7 @@
       line-height:1.45;
     }
 
-    .card-body{
-      padding:18px;
-    }
+    .card-body{ padding:18px; }
 
     .status{
       display:flex;
@@ -295,10 +261,7 @@
     }
 
     /* Side card */
-    .side{
-      display:grid;
-      gap: 14px;
-    }
+    .side{ display:grid; gap: 14px; }
     .side .mini{
       padding:16px;
       border-radius: var(--radius-lg);
@@ -313,11 +276,7 @@
       text-transform:uppercase;
       color:#234a39;
     }
-    .kv{
-      display:grid;
-      gap:10px;
-      margin-top:10px;
-    }
+    .kv{ display:grid; gap:10px; margin-top:10px; }
     .row{
       display:flex;
       align-items:center;
@@ -354,6 +313,7 @@
       color:#fff;
       box-shadow: 0 10px 18px rgba(20,58,42,.20);
       transition: transform .08s ease, filter .2s ease;
+      text-align:center;
     }
     .btn:active{transform: translateY(1px)}
     .btn:hover{filter: brightness(1.05)}
@@ -362,6 +322,13 @@
       color: var(--green-900);
       border: 1px solid rgba(20,58,42,.25);
       box-shadow:none;
+    }
+    .btn.small{
+      padding:10px 12px;
+      border-radius: 12px;
+      font-weight:900;
+      font-size:12px;
+      width:auto;
     }
     .tiny{
       font-size:12px;
@@ -380,11 +347,7 @@
       color: rgba(18,49,36,.78);
       font-size:12px;
     }
-    .trust .item{
-      display:flex;
-      align-items:center;
-      gap:8px;
-    }
+    .trust .item{ display:flex; align-items:center; gap:8px; }
     .trust svg{width:16px;height:16px;opacity:.9}
 
     /* Section below */
@@ -408,7 +371,6 @@
       line-height:1.6;
       font-size:14px;
     }
-
     .quote{
       margin-top:14px;
       padding-top:14px;
@@ -424,24 +386,93 @@
       font-size:12px;
     }
 
+    /* ===== Downloads (PDFs) ===== */
+    .h2{
+      margin:0;
+      font-size: 18px;
+      letter-spacing: -0.01em;
+    }
+    .downloads{ margin-top: 18px; }
+    .downloads-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding:14px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(20,58,42,.14);
+      background: rgba(255,255,255,.56);
+    }
+    .downloads-info{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      min-width:0;
+    }
+    .downloads-info strong{ font-size:14px; }
+    .downloads-info span{
+      font-size:12px;
+      color: var(--muted);
+      line-height:1.3;
+    }
+    .downloads-list{
+      margin-top: 14px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+    .download-item{
+      padding:12px;
+      border-radius: 16px;
+      border: 1px solid rgba(20,58,42,.12);
+      background: rgba(20,58,42,.04);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .download-left{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      min-width:0;
+    }
+    .download-left b{
+      font-size:13px;
+      color:#1f3f31;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .download-left small{
+      font-size:12px;
+      color: var(--muted);
+    }
+    .download-actions{
+      display:flex;
+      gap:8px;
+      flex: 0 0 auto;
+    }
+    .downloads-note{ margin-top: 12px; }
+
     /* Responsive */
     @media (max-width: 900px){
-      .hero{grid-template-columns:1fr; }
-      .header-inner{justify-content:center}
+      .hero{ grid-template-columns:1fr; }
+      .header-inner{ justify-content:center; }
+      .downloads-list{ grid-template-columns: 1fr; }
+      .downloads-top{ flex-direction:column; align-items:stretch; }
     }
   </style>
 </head>
 
 <body>
-
   <header class="header">
     <div class="container">
       <div class="header-inner">
         <div class="brand" aria-label="Marca">
           <div class="logo" aria-hidden="true">
-            <!-- Troque o src pela sua logo (mesmo arquivo usado na home) -->
-            <img src="images/logo-CZuMFv0-.png" alt="Logo" onerror="this.style.display='none'; this.parentElement.style.background='rgba(255,255,255,.10)'; this.parentElement.innerHTML='✦';" />
-          </div>
+            <img src="images/logo-CZuMFv0-.png" alt="Logo"
+                 onerror="this.style.display='none'; this.parentElement.innerHTML='✦';" />
           </div>
         </div>
       </div>
@@ -530,7 +561,6 @@
                 <span>Privacidade Protegida</span>
               </div>
             </div>
-
           </div>
         </section>
 
@@ -561,8 +591,8 @@
             </div>
 
             <div class="cta">
-              <button class="btn" id="whatsBtn">Voltar para a Loja</button>
-              <button class="btn outline" id="backBtn">Sair</button>
+              <button class="btn" id="whatsBtn" type="button">Voltar para a Loja</button>
+              <button class="btn outline" id="backBtn" type="button">Sair</button>
               <div class="tiny">
                 Dica: salve este comprovante — ele pode ser solicitado no atendimento.
               </div>
@@ -579,6 +609,40 @@
           </div>
         </aside>
       </div>
+
+      <!-- ===== NOVA SEÇÃO: DOWNLOADS (8 PDFs) ===== -->
+      <section class="downloads card" aria-label="Downloads do material">
+        <div class="card-header">
+          <div>
+            <h2 class="h2">Seus PDFs já estão disponíveis ✅</h2>
+            <p class="subtitle">Clique para baixar todos de uma vez ou escolha os arquivos individualmente.</p>
+          </div>
+          <div class="badge" title="Acesso liberado">
+            <span class="dot"></span>
+            <span>Downloads</span>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div class="downloads-top">
+            <div class="downloads-info">
+              <strong>Baixar tudo de uma vez</strong>
+              <span>Recomendado: 1 clique e pronto (arquivo .zip)</span>
+            </div>
+
+            <button class="btn" id="downloadAllBtn" type="button">
+              Baixar todos os 8 PDFs
+            </button>
+          </div>
+
+          <div class="downloads-list" id="downloadsList"></div>
+
+          <div class="downloads-note tiny">
+            Se o download não iniciar, no celular mantenha pressionado e escolha “Baixar link”.
+            Em alguns navegadores, múltiplos downloads podem ser bloqueados.
+          </div>
+        </div>
+      </section>
 
       <section class="section" aria-label="Mensagem espiritual">
         <h2>Seu pedido está sendo preparado</h2>
@@ -607,7 +671,6 @@
     function buildUrlWithSameParams(url) {
       const current = new URLSearchParams(window.location.search);
       const u = new URL(url, window.location.origin);
-      // preserva tudo (UTM, subids, etc.)
       current.forEach((val, key) => u.searchParams.set(key, val));
       return u.toString();
     }
@@ -615,7 +678,6 @@
       if(!el) return;
       el.textContent = (txt || "").toString();
     }
-    function onlyDigits(s){ return (s||"").toString().replace(/\D/g, ""); }
 
     // ========= Personalização básica via query =========
     const params = getParams();
@@ -649,7 +711,6 @@
     const progressbar = document.querySelector(".bar");
     const steps = [...document.querySelectorAll(".step")];
 
-    // Se vier "sent" ou "enviado" nos params, já pula para final
     const isSent = ["enviado","sent","shipped","delivered"].includes(status);
 
     function setProgress(pct){
@@ -682,24 +743,20 @@
     }
 
     function runTimeline(){
-      // Timeline “orgânica”, como fila de preparação
       setProgress(25);
       setStepState(1,"done");
       setStepState(2,"active");
       setStepState(3,"");
 
-      // Atualiza ETA com base no horário local (bem simples)
       const now = new Date();
       const eta = document.getElementById("etaText");
       const hour = now.getHours();
       safeText(eta, hour < 18 ? "hoje" : "amanhã");
 
-      // Avanço simulado
       setTimeout(() => setProgress(52), 700);
       setTimeout(() => setProgress(74), 1500);
       setTimeout(() => {
         setProgress(92);
-        // Ativa “Enviando”
         setStepState(2,"done");
         setStepState(3,"active");
         safeText(document.getElementById("statusTitle"), "Preparação finalizada");
@@ -723,7 +780,6 @@
       safeText(document.getElementById("statusDesc"), "Você já deve ter recebido a mensagem com as instruções de acesso/entrega. ✅");
       safeText(document.getElementById("etaText"), "concluído");
     } else {
-      // pequena pausa para entrar “suave”
       setTimeout(runTimeline, 450);
     }
 
@@ -731,17 +787,87 @@
     const whatsBtn = document.getElementById("whatsBtn");
     const backBtn  = document.getElementById("backBtn");
 
-   // Voltar ao site (troque a URL abaixo para sua home real)
     whatsBtn.addEventListener("click", () => {
       const home = buildUrlWithSameParams("https://virgemdeguadalupe.vercel.app/");
       window.location.href = home;
     });
 
-    // Voltar ao site (troque a URL abaixo para sua home real)
     backBtn.addEventListener("click", () => {
       const home = buildUrlWithSameParams("https://virgemdeguadalupe.vercel.app/");
       window.location.href = home;
     });
+
+    // ========= Downloads (8 PDFs) =========
+    // Troque os caminhos para os seus arquivos reais (pasta/nomes).
+    const PDF_FILES = [
+      { title: "PDF 01 — Introdução", file: "pdfs/01-introducao.pdf" },
+      { title: "PDF 02 — Semana 1", file: "pdfs/02-semana-1.pdf" },
+      { title: "PDF 03 — Semana 2", file: "pdfs/03-semana-2.pdf" },
+      { title: "PDF 04 — Semana 3", file: "pdfs/04-semana-3.pdf" },
+      { title: "PDF 05 — Semana 4", file: "pdfs/05-semana-4.pdf" },
+      { title: "PDF 06 — Semana 5", file: "pdfs/06-semana-5.pdf" },
+      { title: "PDF 07 — Semana Santa", file: "pdfs/07-semana-santa.pdf" },
+      { title: "PDF 08 — Orações", file: "pdfs/08-oracoes.pdf" },
+    ];
+
+    // Melhor prática: 1 clique = 1 arquivo (ZIP).
+    // Se você tiver o ZIP pronto, coloque o caminho aqui:
+    const ZIP_ALL = "pdfs/itinerario-quaresmal-2026-todos.zip";
+
+    function withSameParams(url){
+      const current = new URLSearchParams(window.location.search);
+      const u = new URL(url, window.location.origin);
+      current.forEach((val, key) => u.searchParams.set(key, val));
+      return u.toString();
+    }
+
+    function renderDownloads(){
+      const list = document.getElementById("downloadsList");
+      if(!list) return;
+
+      list.innerHTML = PDF_FILES.map((pdf, idx) => {
+        const n = String(idx + 1).padStart(2, "0");
+        return `
+          <div class="download-item">
+            <div class="download-left">
+              <b>${pdf.title}</b>
+              <small>Arquivo ${n} de 08</small>
+            </div>
+            <div class="download-actions">
+              <a class="btn small outline" href="${withSameParams(pdf.file)}" target="_blank" rel="noopener">Abrir</a>
+              <a class="btn small" href="${withSameParams(pdf.file)}" download>Baixar</a>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function setupDownloadAll(){
+      const btn = document.getElementById("downloadAllBtn");
+      if(!btn) return;
+
+      btn.addEventListener("click", () => {
+        if (ZIP_ALL && ZIP_ALL.trim() !== "") {
+          window.location.href = withSameParams(ZIP_ALL);
+          return;
+        }
+
+        // fallback: tenta baixar 8 (pode ser bloqueado por navegador)
+        PDF_FILES.forEach((pdf, i) => {
+          setTimeout(() => {
+            const a = document.createElement("a");
+            a.href = withSameParams(pdf.file);
+            a.download = "";
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+          }, i * 250);
+        });
+      });
+    }
+
+    renderDownloads();
+    setupDownloadAll();
 
     // ========= Ano =========
     document.getElementById("year").textContent = new Date().getFullYear();
