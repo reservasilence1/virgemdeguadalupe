@@ -329,6 +329,7 @@
       font-weight:900;
       font-size:12px;
       width:auto;
+      min-width: 92px; /* garante clique fácil no mobile */
     }
     .tiny{
       font-size:12px;
@@ -386,73 +387,61 @@
       font-size:12px;
     }
 
-    /* ===== Downloads (PDFs) ===== */
+    /* ===== Downloads (PDFs) — RESPONSIVO MOBILE + 1 POR VEZ ===== */
     .h2{
       margin:0;
       font-size: 18px;
       letter-spacing: -0.01em;
     }
     .downloads{ margin-top: 18px; }
-    .downloads-top{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
-      padding:14px;
-      border-radius: var(--radius);
-      border: 1px solid rgba(20,58,42,.14);
-      background: rgba(255,255,255,.56);
-    }
-    .downloads-info{
-      display:flex;
-      flex-direction:column;
-      gap:4px;
-      min-width:0;
-    }
-    .downloads-info strong{ font-size:14px; }
-    .downloads-info span{
-      font-size:12px;
-      color: var(--muted);
-      line-height:1.3;
-    }
+
+    /* lista em 2 colunas no desktop, 1 no mobile */
     .downloads-list{
       margin-top: 14px;
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap:12px;
     }
+
+    /* item vira “cartão” com layout que cabe no celular */
     .download-item{
       padding:12px;
       border-radius: 16px;
       border: 1px solid rgba(20,58,42,.12);
       background: rgba(20,58,42,.04);
       display:flex;
-      align-items:center;
+      align-items:flex-start;
       justify-content:space-between;
       gap:12px;
     }
+
     .download-left{
       display:flex;
       flex-direction:column;
-      gap:4px;
+      gap:6px;
       min-width:0;
     }
     .download-left b{
       font-size:13px;
       color:#1f3f31;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
+      line-height:1.25;
+      white-space:normal; /* permite quebrar no mobile */
+      word-break:break-word;
     }
     .download-left small{
       font-size:12px;
       color: var(--muted);
     }
+
+    /* ações SEMPRE visíveis no mobile */
     .download-actions{
       display:flex;
+      flex-direction:column;
       gap:8px;
       flex: 0 0 auto;
+      align-items:stretch;
     }
+
     .downloads-note{ margin-top: 12px; }
 
     /* Responsive */
@@ -460,7 +449,22 @@
       .hero{ grid-template-columns:1fr; }
       .header-inner{ justify-content:center; }
       .downloads-list{ grid-template-columns: 1fr; }
-      .downloads-top{ flex-direction:column; align-items:stretch; }
+    }
+
+    /* Mobile menor: ações ficam lado a lado e bem clicáveis */
+    @media (max-width: 420px){
+      .download-item{
+        flex-direction:column;
+        gap:10px;
+      }
+      .download-actions{
+        flex-direction:row;
+        width:100%;
+      }
+      .download-actions .btn.small{
+        width:100%;
+        min-width:0;
+      }
     }
   </style>
 </head>
@@ -610,12 +614,12 @@
         </aside>
       </div>
 
-      <!-- ===== NOVA SEÇÃO: DOWNLOADS (8 PDFs) ===== -->
+      <!-- ===== SEÇÃO: DOWNLOADS (7 PDFs) — SOMENTE 1 POR VEZ ===== -->
       <section class="downloads card" aria-label="Downloads do material">
         <div class="card-header">
           <div>
             <h2 class="h2">Seus PDFs já estão disponíveis ✅</h2>
-            <p class="subtitle">Clique para baixar todos de uma vez ou escolha os arquivos individualmente.</p>
+            <p class="subtitle">Baixe um PDF por vez (recomendado para celular).</p>
           </div>
           <div class="badge" title="Acesso liberado">
             <span class="dot"></span>
@@ -624,22 +628,10 @@
         </div>
 
         <div class="card-body">
-          <div class="downloads-top">
-            <div class="downloads-info">
-              <strong>Baixar tudo de uma vez</strong>
-              <span>Recomendado: 1 clique e pronto (arquivo .zip)</span>
-            </div>
-
-            <button class="btn" id="downloadAllBtn" type="button">
-              Baixar todos os 8 PDFs
-            </button>
-          </div>
-
           <div class="downloads-list" id="downloadsList"></div>
 
           <div class="downloads-note tiny">
-            Se o download não iniciar, no celular mantenha pressionado e escolha “Baixar link”.
-            Em alguns navegadores, múltiplos downloads podem ser bloqueados.
+            No celular: se não iniciar, mantenha pressionado no botão e escolha “Baixar link”.
           </div>
         </div>
       </section>
@@ -797,21 +789,19 @@
       window.location.href = home;
     });
 
-    // ========= Downloads (8 PDFs) =========
-    // Troque os caminhos para os seus arquivos reais (pasta/nomes).
+    // ========= Downloads (7 PDFs) — somente 1 por vez =========
+    // IMPORTANTe: em URL, espaços e acentos podem dar problema em alguns servidores.
+    // Se puder, renomeie os arquivos para algo tipo "itinerario-parte-01.pdf".
+    // Se NÃO puder renomear, este encodeURIComponent ajuda.
     const PDF_FILES = [
-      { title: "PDF 01 — Itinerário Quaresmal Parte 1", file: "pdfs/Itinerário Quaresmal 2026 parte 01.pdf" },
-      { title: "PDF 02 — Itinerário Quaresmal Parte 2", file: "pdfs/Itinerário Quaresmal 2026 parte 02.pdf" },
-      { title: "PDF 03 — Diário do Itinerário Quaresmal", file: "pdfs/00 - Diário do Itinerário Quaresmal 2026.pdf" },
-      { title: "PDF 04 — Diário de Oração da Quaresma", file: "pdfs/01 - Bônus Diário de Oração da Quaresma 2026.pdf" },
-      { title: "PDF 05 — Manual de Práticas de Caridade", file: "pdfs/02 - Bônus - Manual de Práticas de Caridade.pdf" },
-      { title: "PDF 06 — Checklist Prático", file: "pdfs/03 - Bônus - Checklist Prático para Viver a Quaresma.pdf" },
-      { title: "PDF 07 — Guia de Penitências", file: "pdfs/04 - Bônus - Guia de Penitências Possíveis.pdf" },
+      { title: "PDF 01 — Itinerário Quaresmal Parte 1", file: "pdfs/Itinerário Quaresmal 2026 parte 01.pdf" },
+      { title: "PDF 02 — Itinerário Quaresmal Parte 2", file: "pdfs/Itinerário Quaresmal 2026 parte 02.pdf" },
+      { title: "PDF 03 — Diário do Itinerário Quaresmal", file: "pdfs/00 - Diário do Itinerário Quaresmal 2026.pdf" },
+      { title: "PDF 04 — Diário de Oração da Quaresma", file: "pdfs/01 - Bônus Diário de Oração da Quaresma 2026.pdf" },
+      { title: "PDF 05 — Manual de Práticas de Caridade", file: "pdfs/02 - Bônus - Manual de Práticas de Caridade.pdf" },
+      { title: "PDF 06 — Checklist Prático", file: "pdfs/03 - Bônus - Checklist Prático para Viver a Quaresma.pdf" },
+      { title: "PDF 07 — Guia de Penitências", file: "pdfs/04 - Bônus - Guia de Penitências Possíveis.pdf" },
     ];
-
-    // Melhor prática: 1 clique = 1 arquivo (ZIP).
-    // Se você tiver o ZIP pronto, coloque o caminho aqui:
-    const ZIP_ALL = "pdfs/Itinerário Quaresmal.zip";
 
     function withSameParams(url){
       const current = new URLSearchParams(window.location.search);
@@ -820,53 +810,40 @@
       return u.toString();
     }
 
+    // tenta preservar nomes/acentos com encode do caminho do arquivo
+    function safeFileUrl(filePath){
+      // separa pasta + nome e só codifica o nome (mantém /pdfs/)
+      const parts = (filePath || "").split("/");
+      const fileName = parts.pop() || "";
+      const dir = parts.join("/");
+      const encodedName = encodeURIComponent(fileName).replace(/%2F/g, "/");
+      return (dir ? (dir + "/") : "") + encodedName;
+    }
+
     function renderDownloads(){
       const list = document.getElementById("downloadsList");
       if(!list) return;
 
       list.innerHTML = PDF_FILES.map((pdf, idx) => {
         const n = String(idx + 1).padStart(2, "0");
+        const fileUrl = withSameParams(safeFileUrl(pdf.file));
+
         return `
           <div class="download-item">
             <div class="download-left">
               <b>${pdf.title}</b>
-              <small>Arquivo ${n} de 08</small>
+              <small>Arquivo ${n} de ${PDF_FILES.length}</small>
             </div>
             <div class="download-actions">
-              <a class="btn small outline" href="${withSameParams(pdf.file)}" target="_blank" rel="noopener">Abrir</a>
-              <a class="btn small" href="${withSameParams(pdf.file)}" download>Baixar</a>
+              <a class="btn small outline" href="${fileUrl}" target="_blank" rel="noopener">Abrir</a>
+              <a class="btn small" href="${fileUrl}" download>Baixar</a>
             </div>
           </div>
         `;
       }).join("");
     }
 
-    function setupDownloadAll(){
-      const btn = document.getElementById("downloadAllBtn");
-      if(!btn) return;
-
-      btn.addEventListener("click", () => {
-        if (ZIP_ALL && ZIP_ALL.trim() !== "") {
-          window.location.href = withSameParams(ZIP_ALL);
-          return;
-        }
-
-        // fallback: tenta baixar 8 (pode ser bloqueado por navegador)
-        PDF_FILES.forEach((pdf, i) => {
-          setTimeout(() => {
-            const a = document.createElement("a");
-            a.href = withSameParams(pdf.file);
-            a.download = "";
-            document.body.appendChild(a);
-            a.click();
-            a.remove();
-          }, i * 250);
-        });
-      });
-    }
-
     renderDownloads();
-    setupDownloadAll();
 
     // ========= Ano =========
     document.getElementById("year").textContent = new Date().getFullYear();
